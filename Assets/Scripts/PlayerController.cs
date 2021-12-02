@@ -6,7 +6,7 @@ using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 0;
+    public float speed = 15;
     public TextMeshProUGUI countText;
     public GameObject winTextObject;
 
@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
     void SetCountText()
     {
         countText.text = "Count: " + count.ToString();
-        if(count >- 12)
+        if(count > 12)
         {
             winTextObject.SetActive(true);
         }
@@ -51,10 +51,12 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("PickUp")) 
-            
-        other.gameObject.SetActive(false);
-        count = count + 1;
+        if (other.gameObject.CompareTag("PickUp"))
+        {
+            other.gameObject.SetActive(false);
+            count++;
+            SetCountText();
+        }
     }
 }
 
